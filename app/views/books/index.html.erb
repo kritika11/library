@@ -1,0 +1,28 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <table class="table table-striped">
+     <thead class="heading"><tr><th style="text-align: center">AVAILABLE BOOKS</th></tr></thead>
+      <tbody>
+            <%@books.each do |book|%>
+                <tr><td><%= link_to book.book_name ,new_book_issue_detail_path(book.id), remote: true %></td></tr>
+            <%end%>
+    </tbody>
+    </table>
+    </div>
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <thead class="heading"><tr><th style="text-align: center">ISSUED BOOKS</th></tr></thead>
+      <tbody>
+      <%@issue_details.each do |issue|%>
+         <%if issue.book.available==false%>
+          <tr><td><%= link_to issue.book.book_name ,book_issue_detail_path(issue.book.id,issue.id), remote: true %></td></tr>
+        <%end%>
+      <%end%>
+      </tbody>
+    </table>
+</div>
+</div>
+
+<div id="new-issue">
+  <%= render :partial => "issue_details/iss_new_modal",:locals => {:issue=>@issue,:book_id=>@book_id}%>
+</div>

@@ -1,0 +1,24 @@
+<%if !@issue.blank?%>
+    <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+
+    <!-- Modal -->
+    <body>
+    <h1>Page Header</h1>
+    <%=form_for @issue,url:book_issue_details_path(@book_id), method: :get do |f| %>
+        Book name <input type="text" name="issue_detail[book_name]" value="<%=get_book_name(@book_id)%>">
+        Book Id <input type="text" name="issue_detail[book_id]" value="<%=@book_id%>">
+
+        <%=f.label "Issue Date"%>
+        <%=f.date_field :issueDate, name="issue_detail[issueDate]"%>
+
+        <%=f.label "Return Date"%>
+        <%=f.date_field :returnDate %>
+
+        <%=f.label "Return Date"%>
+        <%=f.date_field :returningDate %>
+        Employee Id<input type="text">
+        <%=f.submit "Create"%>
+
+    <%end%>
+    </body>
+<%end%>

@@ -1,0 +1,18 @@
+<%=form_for @issue,url:request.path.include?('new')? book_issue_details_path(@book_id):book_issue_detail_path(@book_id,@issue.id) do |f| %>
+    Book name <input type="text" name="issue_detail[book_name]" value="<%=get_book_name(@book_id)%>">
+    Book Id <input type="text" name="issue_detail[book_id]" value="<%=@book_id%>">
+
+    <%=f.label "Issue Date"%>
+    <%=f.date_field :issueDate%>
+
+    <%=f.label "Return Date"%>
+    <%=f.date_field :returnDate %>
+
+    <%if !request.path.include?('new')%>
+        <%=f.label "Returning Date"%>
+        <%=f.date_field :returningDate %>
+        Employee Id<input type="text">
+   <%end%>
+    <%=f.submit "Create"%>
+
+<%end%>
